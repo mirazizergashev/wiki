@@ -1,0 +1,1 @@
+**Salom wiki_bot**
