@@ -8,9 +8,10 @@ const wiki = require('wikijs').default;
 bot.onText('/\start/',msg=>{
     bot.sendMessage(msg.chat.id,'Botga xush kelibsiz')
 });
-let data='';
+
 // if(msg.text!='start'){
     bot.on('message',async(msg)=>{
+        let data='';
         soz=msg.text.split(/\s* \s*/)
         console.log(soz)
         for(let j=0;j<soz.length;j++)
@@ -20,10 +21,11 @@ console.log(soz.slice(i,soz.length-j+i).join(' '))
     await wiki().page(`${soz.slice(i,soz.length-j+i+1).join(' ')}`).then(page => page.summary()).then((k)=>{
         console.log('ok')
     if(k.length>1000){
-        k=k.substring(0,(k.indexOf('.',1000)))+'.'
+        // k=k.substring(0,(k.indexOf('.',1000)))+'.'
+        k=k.substring(0,1000)
     }
-    ifdata=k;
-    bot.sendMessage(msg.chat.id,k)
+    if(k)data=k;
+    bot.sendMessage(msg.chat.id,k);
     
 })
 .catch((err)=>{
