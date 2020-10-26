@@ -50,5 +50,19 @@ bot.onText('/\start/',msg=>{
 //   });
 
 
-    
+const app=require('express')()
+const port=process.env.PORT || 3300
+app.get('/', (req, res) => {
+  res.send("ok");
+});
+app.listen(port, () => {
+  console.log(`Server started on ${port}`);
+});
 
+setInterval(()=> {
+ request.get('http://automashinaboti.herokuapp.com',(error, response, body)=>{
+     console.log("error:",error)
+    //  console.log("response",response)
+    //  console.log("body",' ',body)
+})   
+},15*60000)
