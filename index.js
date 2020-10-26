@@ -22,7 +22,7 @@ console.log(soz.slice(i,soz.length-j+i).join(' '))
     if(k.length>1000){
         k=k.substring(0,(k.indexOf('.',1000)))+'.'
     }
-    if(k)data=k;
+    ifdata=k;
     bot.sendMessage(msg.chat.id,k)
     
 })
