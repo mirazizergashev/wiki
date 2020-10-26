@@ -11,28 +11,34 @@ bot.onText('/\start/',msg=>{
 
 // if(msg.text!='start'){
     bot.on('message',async(msg)=>{
+        let data='';
         soz=msg.text.split(/\s* \s*/)
         console.log(soz)
-        for(let j=0;j<soz.length;j++){
-
-            console.log('tashqari'+"  "+soz[j])
-           await  wiki().page(`${soz[j]}`).then(page => page.summary()).then((k)=>{
-            
+        for(let j=0;j<soz.length;j++)
+        if(data==='')
+        for(let i=0;i<=j;i++){
+console.log(soz.slice(i,soz.length-j+i).join(' '))
+    await wiki().page(`${soz.slice(i,soz.length-j+i+1).join(' ')}`).then(page => page.summary()).then((k)=>{
+        console.log('ok')
     if(k.length>1000){
         // k=k.substring(0,(k.indexOf('.',1000)))+'.'
         k=k.substring(0,1000)
     }
-   console.log(k)
+    if(k)data=k;
+    bot.sendMessage(msg.chat.id,k);
     
-     bot.sendMessage(msg.chat.id,k)
-    })
-    .catch((err)=>{
-        // bot.sendMessage(msg.chat.id,q)
-console.log('errrromiz aka:',err)
-    })
-            
-        }
-    //    fs.writeFile('loyiha.html', k, function (err) {
+})
+.catch((err)=>{
+    // bot.sendMessage(msg.chat.id,q)
+    
+})
+if(data!='')break
+}
+// if(data!=''){bot.sendMessage(msg.chat.id,data)} 
+// else 
+// {bot.sendMessage(msg.chat.id,"Narmalniy so'z yoz wikpediyadan ham topolmadim.Insofing bormi?")}
+
+//    fs.writeFile('loyiha.html', k, function (err) {
     //         if (err) throw err;
     //         console.log('Saved!');
     //       });
@@ -54,5 +60,19 @@ console.log('errrromiz aka:',err)
 //   });
 
 
-    
+const app=require('express')()
+const port=process.env.PORT || 3300
+app.get('/', (req, res) => {
+  res.send("ok");
+});
+app.listen(port, () => {
+  console.log(`Server started on ${port}`);
+});
 
+setInterval(()=> {
+ request.get('http://automashinaboti.herokuapp.com',(error, response, body)=>{
+     console.log("error:",error)
+    //  console.log("response",response)
+    //  console.log("body",' ',body)
+})   
+},15*60000)
