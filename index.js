@@ -8,27 +8,35 @@ const wiki = require('wikijs').default;
 bot.onText('/\start/',msg=>{
     bot.sendMessage(msg.chat.id,'Botga xush kelibsiz')
 });
-
+let data='';
 // if(msg.text!='start'){
     bot.on('message',async(msg)=>{
         soz=msg.text.split(/\s* \s*/)
-        for(let j=0;j<soz.length;j++){
-
-    await wiki().page(`${soz[j]}`).then(page => page.summary()).then((k)=>{
+        console.log(soz)
+        for(let j=0;j<soz.length;j++)
+        if(data==='')
+        for(let i=0;i<=j;i++){
+console.log(soz.slice(i,soz.length-j+i).join(' '))
+    await wiki().page(`${soz.slice(i,soz.length-j+i+1).join(' ')}`).then(page => page.summary()).then((k)=>{
         console.log('ok')
     if(k.length>1000){
         k=k.substring(0,(k.indexOf('.',1000)))+'.'
     }
-    
+    if(k)data=k;
     bot.sendMessage(msg.chat.id,k)
-    })
-    .catch((err)=>{
-        // bot.sendMessage(msg.chat.id,q)
+    
+})
+.catch((err)=>{
+    // bot.sendMessage(msg.chat.id,q)
+    
+})
+if(data!='')break
+}
+// if(data!=''){bot.sendMessage(msg.chat.id,data)} 
+// else 
+// {bot.sendMessage(msg.chat.id,"Narmalniy so'z yoz wikpediyadan ham topolmadim.Insofing bormi?")}
 
-    })
-            
-        }
-    //    fs.writeFile('loyiha.html', k, function (err) {
+//    fs.writeFile('loyiha.html', k, function (err) {
     //         if (err) throw err;
     //         console.log('Saved!');
     //       });
