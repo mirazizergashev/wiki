@@ -18,7 +18,7 @@ bot.onText('/\start/',msg=>{
         if(data==='')
         for(let i=0;i<=j;i++){
 console.log(soz.slice(i,soz.length-j+i).join(' '))
-    await wiki().page(`${soz.slice(i,soz.length-j+i+1).join(' ')}`).then(page => page.summary()).then((k)=>{
+    await wiki().page(`${soz.slice(i,soz.length-j+i).join(' ')}`).then(page => page.summary()).then((k)=>{
         console.log('ok')
     if(k.length>1000){
         // k=k.substring(0,(k.indexOf('.',1000)))+'.'
