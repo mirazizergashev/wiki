@@ -12,19 +12,23 @@ bot.onText('/\start/',msg=>{
 // if(msg.text!='start'){
     bot.on('message',async(msg)=>{
         soz=msg.text.split(/\s* \s*/)
+        console.log(soz)
         for(let j=0;j<soz.length;j++){
 
-    await wiki().page(`${soz[j]}`).then(page => page.summary()).then((k)=>{
-        console.log('ok')
+            console.log('tashqari'+"  "+soz[j])
+           await  wiki().page(`${soz[j]}`).then(page => page.summary()).then((k)=>{
+            
     if(k.length>1000){
-        k=k.substring(0,(k.indexOf('.',1000)))+'.'
+        // k=k.substring(0,(k.indexOf('.',1000)))+'.'
+        k=k.substring(0,1000)
     }
+   console.log(k)
     
-    bot.sendMessage(msg.chat.id,k)
+     bot.sendMessage(msg.chat.id,k)
     })
     .catch((err)=>{
         // bot.sendMessage(msg.chat.id,q)
-
+console.log('errrromiz aka:',err)
     })
             
         }
